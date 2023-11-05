@@ -9,9 +9,19 @@ jobs:
         with:
           ref: ${{ github.pull_request.head.sha }}
           path: "head"
-      - run: ls head/migrations
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.pull_request.base.sha }}
           path: "base"
           run: ls base/migrations
+      - run: |
+          {
+            ls head/migrations > head-migrations
+            ls base/migrations > base-migrations
+            oldest_new_migration_in_head=$(sort base-migrations base-migrations head-migrations | uniq -u | sort | head -1)
+            most_recent_migration_in_base=$(tail -1 base-migrations)
+            if [[ $oldest_new_migration_in_head < $most_recent_migration_in_base ]]; then
+              echo "There are migration in the base branch that are more recent that your new migrations!"
+              exit 1
+            fi
+          }
