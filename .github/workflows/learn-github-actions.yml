@@ -16,3 +16,6 @@ jobs:
         uses: sgarciac/alphabetically-incremental-new-files-check@v0.0.0
         with:
           milliseconds: 1000
+      - name: Print Output
+        id: output
+        run: echo "${{ steps.alphabetically-incremental.outputs.time }}"
