@@ -12,6 +12,7 @@ jobs:
         with:
           ref: ${{ github.pull_request.base.ref }}
           path: "base"
+      - run: echo ${{ github.pull_request.base.ref }}
       - run: |
           {
             ls head/migrations > head-migrations
