@@ -3,6 +3,7 @@ run-name: Fast forward Migrations Check
 on: [pull_request]
 jobs:
   check-incremental:
+    name: fast-forward-migrations-check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
