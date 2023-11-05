@@ -19,7 +19,7 @@ jobs:
             ls head/migrations > head-migrations
             ls base/migrations > base-migrations
             echo "----"
-            echo $(sort base-migrations base-migrations head-migrations | uniq -u | sort | head -1)
+            echo $(sort base-migrations base-migrations head-migrations )
             echo $(sort base-migrations)
             echo $(sort base-migrations | uniq -u)
             echo "----"
