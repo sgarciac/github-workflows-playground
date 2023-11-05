@@ -18,7 +18,11 @@ jobs:
           {
             ls head/migrations > head-migrations
             ls base/migrations > base-migrations
-            sort base-migrations base-migrations head-migrations | uniq -u | sort | head -1
+            echo "----"
+            echo $(sort base-migrations base-migrations head-migrations | uniq -u | sort | head -1)
+            echo ${sort base-migrations}
+            echo ${sort base-migrations | uniq -u}
+            echo "----"
             oldest_new_migration_in_head=$(sort base-migrations base-migrations head-migrations | uniq -u | sort | head -1)
             most_recent_migration_in_base=$(tail -1 base-migrations)
             most_recent_in_head=$(tail -1 head-migrations)
