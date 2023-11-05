@@ -9,8 +9,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: "14"
-      - run: npm install -g bats
-      - run: bats -v
       - name: test my action
         id: alphabetically-incremental
         uses: sgarciac/alphabetically-incremental-new-files-check@v0.0.0
@@ -18,4 +16,4 @@ jobs:
           milliseconds: 1000
       - name: Print Output
         id: output
-        run: echo "${{ steps.alphabetically-incremental.outputs.time }}"
+        run: echo "${{ steps.alphabetically-incremental.outputs }}"
