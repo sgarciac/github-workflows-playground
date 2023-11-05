@@ -1,5 +1,5 @@
-name: learn-github-actions
-run-name: Full forward migrations only
+name: fast-forward-migrations-check
+run-name: Fast forward Migrations Check
 on: [pull_request]
 jobs:
   check-incremental:
