@@ -22,5 +22,8 @@ jobs:
             if [[ $oldest_new_migration_in_head < $most_recent_migration_in_base ]]; then
               echo "There is at least one migration in the head branch that is older than the latest migration known in base branch (${oldest_new_migration_in_head} < ${most_recent_migration_in_base})."
               exit 1
+            else
+              echo "No conflicting migrations found."
+              exit 0
             fi
           }
