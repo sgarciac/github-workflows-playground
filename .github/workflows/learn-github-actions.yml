@@ -13,7 +13,6 @@ jobs:
         with:
           ref: ${{ github.pull_request.base.sha }}
           path: "base"
-          run: ls base/migrations
       - run: |
           {
             ls head/migrations > head-migrations
