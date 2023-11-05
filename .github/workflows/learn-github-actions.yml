@@ -6,14 +6,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "14"
       - name: test my action
         id: alphabetically-incremental
         uses: sgarciac/alphabetically-incremental-new-files-check@v0.0.0
         with:
-          milliseconds: 1000
+          directory: "migrations"
       - name: Print Output
         id: output
         run: echo "${{ steps.alphabetically-incremental.outputs }}"
