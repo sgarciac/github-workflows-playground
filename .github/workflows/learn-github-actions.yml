@@ -1,17 +1,17 @@
 name: learn-github-actions
-run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+run-name: Full forward migrations only
+on: [pull_request]
 jobs:
   check-incremental:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: test my action
-        id: alphabetically-incremental
-        uses: sgarciac/alphabetically-incremental-new-files-check@v0.0.4
         with:
-          directory: "migrations"
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Print Output
-        id: output
-        run: echo "${{ steps.alphabetically-incremental.outputs }}"
+          ref: ${{ github.pull_request.head.sha }}
+          path: "head"
+      - run: ls head/migrations
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.pull_request.base.sha }}
+          path: "base"
+          run: ls base/migrations
