@@ -21,9 +21,11 @@ jobs:
             sort base-migrations base-migrations head-migrations | uniq -u | sort | head -1
             oldest_new_migration_in_head=$(sort base-migrations base-migrations head-migrations | uniq -u | sort | head -1)
             most_recent_migration_in_base=$(tail -1 base-migrations)
+            most_recent_in_head=$(tail -1 head-migrations)
             echo "****"
             echo Oldest new migration in head: $oldest_new_migration_in_head
             echo Most recent migration in base: $most_recent_migration_in_base
+            echo Most recent migration in head: $most_recent_in_head
             echo "****"
             if [[ $oldest_new_migration_in_head < $most_recent_migration_in_base ]]; then
               echo "There is at least one migration in the head branch that is older than the latest migration known in base branch."
